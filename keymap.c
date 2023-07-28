@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______,  KC_BTN1,   KC_BTN2,    KC_BTN3,    _______,    _______,                          XXXXXXX,    KC_KP_7,    KC_KP_8,    KC_KP_9,    KC_PPLS,  RALT(KC_BSLS), \
    _______,  _______,   _______,    _______,    _______,    _______,                          XXXXXXX,    KC_KP_4,    KC_KP_5,    KC_KP_6,    KC_PERC,  KC_EQL, \
    _______,  _______,   _______,    _______,    _______,    _______, KC_NUBS,        S(KC_NUBS), XXXXXXX,    KC_KP_1,    KC_KP_2,    KC_KP_3,    XXXXXXX,  _______, \
-                                   _______, _______, _______, _______,                      _______, MO(_ADJUST), KC_KP_0, KC_DOT \
+                                   _______, _______, _______, _______,                      _______, _______, KC_KP_0, KC_DOT \
 ),
 /* RAISE
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    KC_C           ,  KC_F1,     KC_F2,      KC_F3,      KC_F4,      KC_F5,                            _______,    KC_WBAK,      KC_UP,    KC_WFWD,    _______,  KC_HOME, \
    _______        ,  KC_F6,     KC_F7,      KC_F8,      KC_F9,      KC_F10,                           _______,    KC_LEFT,    KC_DOWN,    KC_RGHT,    _______,  KC_END, \
    _______        ,  KC_F11,    KC_F12,     _______,     _______,     _______, _______,         _______, _______,    _______,    _______,    _______,    _______,  _______, \
-                                   _______, _______, MO(_ADJUST), _______,                      _______, _______, _______, _______ \
+                                   _______, _______, _______, _______,                      _______, _______, _______, _______ \
 ),
 /* ADJUST
  * ,-----------------------------------------.                    ,-----------------------------------------.
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      | HUE- | SAT- | VAL- |SPEED-|      |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RAISE |BackSP| RGUI |
+ *                   | LAlt | LGUI |LOWER | /Space  /       \Enter \  |RA|ISE |BackSP| RGUI |
  *                   |      |      |      |/       /         \      \ |      |      |      |
  *                   `----------------------------'           '------''--------------------'
  */
@@ -112,27 +112,12 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 
 // When you add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
-const char *read_logo(void);
-void set_keylog(uint16_t keycode, keyrecord_t *record);
-const char *read_keylog(void);
-const char *read_keylogs(void);
-
-// const char *read_mode_icon(bool swap);
-// const char *read_host_led_state(void);
-// void set_timelog(void);
-// const char *read_timelog(void);
 
 bool oled_task_user(void) {
   if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
     oled_write_ln(read_layer_state(), false);
-    oled_write_ln(read_keylog(), false);
-    oled_write_ln(read_keylogs(), false);
-    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    //oled_write_ln(read_host_led_state(), false);
-    //oled_write_ln(read_timelog(), false);
   } else {
-    oled_write(read_logo(), false);
   }
     return false;
 }
@@ -140,10 +125,7 @@ bool oled_task_user(void) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-#ifdef OLED_ENABLE
-    set_keylog(keycode, record);
-#endif
-    // set_timelog();
+    // Acá van nuestras macros
   }
   return true;
 }
