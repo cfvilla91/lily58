@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "./keymap.h"
+#include "./my_keymap.h"
 #include "features/oled/luna-keyboard-dog/luna.h"
 #include "features/oled/caps/caps.h"
 #include "features/oled/numlock/numlock.h"
@@ -8,6 +8,7 @@
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
+
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
 #ifdef OLED_ENABLE
