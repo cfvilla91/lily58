@@ -30,6 +30,8 @@ bool oled_task_user(void) {
 }
 #endif // OLED_ENABLE
 
+bool should_process_keypress(void) { return true; }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   process_luna(keycode, record);
   return true;
