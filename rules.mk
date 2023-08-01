@@ -21,3 +21,4 @@ SRC +=  ./features/oled/luna-keyboard-dog/luna.c \
 		./features/oled/caps/caps.c \
 		./features/oled/numlock/numlock.c \
 		./features/oled/print-layer/print-layer.c \
+		./features/oled/print-wpm/print-wpm.c \

@@ -4,6 +4,7 @@
 #include "features/oled/caps/caps.h"
 #include "features/oled/numlock/numlock.h"
 #include "features/oled/print-layer/print-layer.h"
+#include "features/oled/print-wpm/print-wpm.h"
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
@@ -22,6 +23,7 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
 bool oled_task_user(void) {
 
     process_print_layer();
+    process_print_wpm();
     process_numLock();
     process_caps();
 
