@@ -5,9 +5,14 @@
 #include "features/oled/numlock/numlock.h"
 #include "features/oled/print-layer/print-layer.h"
 #include "features/oled/print-wpm/print-wpm.h"
+#include "features/rgb/underlight/set-color-per-layer.h"
 
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
+}
+
+void matrix_scan_user(void) {
+    process_set_color_per_layer();
 }
 
 
@@ -17,8 +22,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
-
-// When you add source files to SRC in rules.mk, you can use functions.
 
 bool oled_task_user(void) {
 
