@@ -7,7 +7,7 @@
 // #define EE_HANDS
 
 #define TAPPING_FORCE_HOLD
-#define TAPPING_TERM 130
+#define TAPPING_TERM 175
 
 #undef RGBLED_NUM
 #define RGBLED_NUM 16

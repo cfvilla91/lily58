@@ -38,6 +38,24 @@ bool oled_task_user(void) {
 bool should_process_keypress(void) { return true; }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  process_luna(keycode, record);
-  return true;
+    switch (keycode) {
+        case CK_HYPHEN_ARROW:
+            if (record->event.pressed) {
+                tap_code(KC_SLSH);
+                register_code(KC_LSFT);
+                tap_code(KC_NUBS);
+                unregister_code(KC_LSFT);
+            }
+            break;
+        case CK_ARROW_FUNCTION:
+            if (record->event.pressed) {
+                register_code(KC_LSFT);
+                tap_code(KC_0);
+                tap_code(KC_NUBS);
+                unregister_code(KC_LSFT);
+            }
+            break;
+    }
+    process_luna(keycode, record);
+    return true;
 }
